@@ -38,12 +38,20 @@ class CPUUtilPollster(InstanceStatsPollster):
     sample_unit = '%'
     sample_stats_key = 'cpu_util'
 
-
+class MemoryAllocationPollster(InstanceStatsPollster):
+    sample_name = 'memory.allocation'
+    sample_unit = 'MB'
+    sample_stats_key = 'memory_allocation'
+    
 class MemoryUsagePollster(InstanceStatsPollster):
     sample_name = 'memory.usage'
     sample_unit = 'MB'
     sample_stats_key = 'memory_usage'
 
+class MemoryUtilPollster(InstanceStatsPollster):
+    sample_name = 'memory_util'
+    sample_unit = '%'
+    sample_stats_key = 'memory_util'
 
 class MemoryResidentPollster(InstanceStatsPollster):
     sample_name = 'memory.resident'

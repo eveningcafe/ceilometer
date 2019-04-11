@@ -31,6 +31,14 @@ sources:
           - "network.outgoing.packets"
       sinks:
           - network_sink
+
+    - name: memory_source
+      meters:
+        - memory.usage
+        - memory.allocation
+      sinks:
+        - memory_sink
+
 sinks:
     - name: meter_sink
       transformers:
@@ -87,3 +95,16 @@ sinks:
                     type: "gauge"
       publishers:
           - gnocchi://
+
+    - name: memory_sink
+      transformers:
+          - name: "arithmetic"
+            parameters:
+              target:
+                name: "memory_util"
+                unit: "%"
+                type: "gauge"
+                expr: "100 * $(memory.usage) / $(memory.allocation)"
+      publishers:
+        - gnocchi://?filter_project=service&archive_policy=low
+

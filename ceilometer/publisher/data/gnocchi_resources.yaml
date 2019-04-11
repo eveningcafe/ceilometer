@@ -35,7 +35,9 @@ resources:
   - resource_type: instance
     metrics:
       - 'memory'
+      - 'memory.allocation'
       - 'memory.usage'
+      - 'memory_util'
       - 'memory.resident'
       - 'memory.swap.in'
       - 'memory.swap.out'
